@@ -1,0 +1,113 @@
+﻿/*-------- scrollbar ----------*/
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track 
+{
+    background: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(0deg, #909090aa 0, #909090aa 100%) !important;
+    border-radius: 20px;
+    opacity:0.3;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+   background: linear-gradient(0deg, #909090aa 0, #909090aa 100%) !important;
+    opacity:1;
+}
+
+
+.header{background:linear-gradient(87deg, #ec1d23 0, #f53e3e 100%) !important;}
+.hidden
+{
+    display : none !important;
+}
+
+
+.val-msg
+{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin:1.5em;
+    background: red;
+    color: #fff;
+    border-radius: 20px;
+    padding: 0px 6px;
+    tranform:translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+}
+
+/*----------------filter label --------------*/
+.pointer:hover
+{
+    cursor:pointer;
+}
+
+/*----------------button --------------*/
+
+.c-btn--small {
+    height: 3.6rem;
+    line-height: 3.6rem;
+    min-width: 6rem;
+    font-size: 1.2rem;
+    font-family: "Nunito Sans", Roboto, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    word-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 0px 2rem;
+    text-decoration: none !important;
+}
+
+.c-btn 
+{
+    position: relative;
+    display: inline-block;
+    width: auto;
+    min-width: 22rem;
+    vertical-align: middle;
+    background-color: transparent;
+    white-space: nowrap;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    color: rgb(3, 168, 245) !important;
+    padding: 0px 4rem;
+    border-radius: 2.5rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(3, 168, 245);
+    border-image: initial;
+    transition: all 0.2s ease-in-out 0s;
+    text-decoration: none !important;
+}
+
+/*--------grid pager----------*/
+
+.filter
+{
+   padding: 1.5rem 0; 
+}
+
+/*--------Time Picker ----------*/
+
+.TimePickerTextBox
+{
+    border:none !important;
+}
+
+.clock input
+{
+    font-size:15px !important;
+    font-size:11pt !important;
+}

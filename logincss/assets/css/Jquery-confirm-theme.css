@@ -1,0 +1,32 @@
+﻿.jconfirm.jconfirm-my-theme {
+  .jconfirm-bg 
+  {
+        background: rgba(0, 0, 0, 0.7);
+  }
+  .jconfirm-box {
+    &.loading {
+      &:before {
+      }
+      &:after {
+      }
+    }
+    div.jconfirm-closeIcon {
+    }
+    div.jconfirm-title-c {
+    }
+    div.jconfirm-content-pane {
+    }
+    div.jconfirm-content {
+      &:empty {
+      }
+    }
+    .jconfirm-buttons {
+      button {
+      }
+      button + button {
+      }
+    }
+    &.hilight {
+    }
+  }
+}

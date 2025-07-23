@@ -1,0 +1,476 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="AdminMaster.master.cs" Inherits="Administrator_AdminMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Golden Life</title>
+    <%--<link rel="icon" href="../Images/Logo3.png" type="image/icon type">--%>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+    <!-- CodeMirror -->
+    <link rel="stylesheet" href="plugins/codemirror/codemirror.css">
+    <link rel="stylesheet" href="plugins/codemirror/theme/monokai.css">
+    <!-- SimpleMDE -->
+    <link rel="stylesheet" href="plugins/simplemde/simplemde.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- Bootstrap4 Duallistbox -->
+    <link rel="stylesheet" href="plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+    <!-- BS Stepper -->
+    <link rel="stylesheet" href="plugins/bs-stepper/css/bs-stepper.min.css">
+    <!-- dropzonejs -->
+    <link rel="stylesheet" href="plugins/dropzone/min/dropzone.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="dist/css/Loader.css" />
+    <style>
+        .Action {
+            left: -45px !important;
+        }
+
+        #modal_ContentPlaceHolder1_CrystalReportViewer1__UI_promptDlg, #ContentPlaceHolder1_CrystalReportViewer1__UI_promptDlg {
+            display: none !important;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="hold-transition sidebar-mini">
+    <form id="form1" runat="server">
+        <asp:Label ID="orgg_Id" runat="server" Text="" Visible="false"></asp:Label>
+        <asp:Label ID="username" runat="server" Text="" Visible="false"></asp:Label>
+        <asp:Label ID="Role" runat="server" Text="" Visible="false"></asp:Label>
+        <asp:Label ID="user_Id" runat="server" Text="" Visible="false"></asp:Label>
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <div class="wrapper">
+            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                <!-- Left navbar links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item" style="display: none;">
+                        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href="Dashboard.aspx" class="nav-link"></a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href="#" class="nav-link"></a>
+                    </li>
+                </ul>
+                <!-- Right navbar links -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="far fa-user"></i>
+                            <asp:Label ID="Name" runat="server" Text=""></asp:Label>
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="min-width: 200px;">
+                            <a href="#" class="dropdown-item" data-toggle="modal" data-target="#ChangePassword">
+                                <i class="fa-solid fa-key mr-2"></i>Change Password
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="Logout.aspx" class="dropdown-item">
+                                <i class="fa fa-power-off mr-2"></i>Log Out
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item" style="display: none;">
+                        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="display: none;">
+                        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                            <i class="fas fa-th-large"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="modal fade" id="ChangePassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="ddlCategory">Old Password</label><span style="color: red">*</span>
+                                        <asp:TextBox ID="txtOldPssword" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="Password" ErrorMessage="Old Password is Required" ControlToValidate="txtOldPssword" Display="None"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="ddlCategory">New Password</label><span style="color: red">*</span>
+                                        <asp:TextBox ID="txtNewPassword" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="Password" ErrorMessage="New Password is Required" ControlToValidate="txtNewPassword" Display="None"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="ddlCategory">Confirm Password</label><span style="color: red">*</span>
+                                        <asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ValidationGroup="Password" ErrorMessage="Confirm Password is Required" ControlToValidate="txtConfirmPassword" Display="None"></asp:RequiredFieldValidator>
+                                        <asp:CompareValidator ID="CompareValidator1" EnableClientScript="True" runat="server" ErrorMessage="Old Password and New Password Must be Same" ControlToCompare="txtNewPassword" Display="None" ControlToValidate="txtConfirmPassword" ValidationGroup="Password"></asp:CompareValidator>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:LinkButton ID="lbrnChane" runat="server" class="btn btn-primary" ValidationGroup="Password" OnClick="lbrnChane_Click">Change Password</asp:LinkButton>
+                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="Password" ShowMessageBox="True" ShowSummary="False" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                <!-- Brand Logo -->
+                <a href="View_Staff_Detail.aspx" class="brand-link" style="height: 80px; padding: 0px;">
+                    <img src="../Images/logo_3.png" class="brand-image elevation-3" style="opacity: .8; margin: 0; width: 100%; max-height: 100%;">
+                </a>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class
+                       with font-awesome or any other icon font library -->
+                            <li class="nav-item">
+                                <a href="DashBoard.aspx" class="nav-link">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Dashboard
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item d-none">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-shopping-cart"></i>
+                                    <p>
+                                        Manage Orders
+                                    <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="PlaceOrder.aspx" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Order</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="ViewOrders.aspx" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>View Order</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-user"></i>
+                                    <p>
+                                        Manage Users
+                                    <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item ">
+                                        <a href="Add_Users.aspx" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Users</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="View_Customer.aspx" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>View Users</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item d-none">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-bag-shopping"></i>
+                                    <p>
+                                        Manage Order List
+                                    <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="Add_Order_List.aspx" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Order List</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="View_Order_List.aspx" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>View Order List</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="MarkProduct.aspx" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Mark Product</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="GenerateZipEstimate.aspx" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Estimation List</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-indian-rupee-sign"></i>
+                                    <p>
+                                        Manage Payments
+                                    <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="View_Payments.aspx" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>View Payments</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa-solid fa-money-bill-transfer"></i>
+                                    <p>
+                                        Manage Event
+                                    <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="AddEventNews.aspx" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Add Event</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="View_Event_News.aspx" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>View Event</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-bars-progress"></i>
+                                    <p>
+                                        Manage App <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="Add_Images.aspx" class="nav-link">
+                                            <i class="nav-icon fa fa-photo-film"></i>
+                                            <p>
+                                                Photos
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="Add_Reels.aspx" class="nav-link">
+                                            <i class="nav-icon fa fa-photo-video"></i>
+                                            <p>
+                                                Reels
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="View_Banner.aspx" class="nav-link">
+                                            <i class="nav-icon fa fa-layer-group"></i>
+                                            <p>
+                                                Banner Images
+                                            </p>
+                                        </a>
+                                    </li>
+                                     <li class="nav-item">
+                                        <a href="View_Folders.aspx" class="nav-link">
+                                            <i class="nav-icon fa fa-folder"></i>
+                                            <p>
+                                               View Folder
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-bars-progress"></i>
+                                    <p>
+                                        Settings <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="View_Plans.aspx" class="nav-link">
+                                            <i class="nav-icon fa fa-bag-shopping"></i>
+                                            <p>
+                                                View Plans
+                                            </p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+            </aside>
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <!-- Bootstrap 4 -->
+            <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- DataTables  & Plugins -->
+            <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+            <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+            <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+            <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+            <script src="plugins/jszip/jszip.min.js"></script>
+            <script src="plugins/pdfmake/pdfmake.min.js"></script>
+            <script src="plugins/pdfmake/vfs_fonts.js"></script>
+            <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+            <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+            <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+            <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+            <!-- Select2 -->
+            <script src="plugins/select2/js/select2.full.min.js"></script>
+            <!-- Bootstrap4 Duallistbox -->
+            <script src="plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+            <!-- InputMask -->
+            <script src="plugins/moment/moment.min.js"></script>
+            <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
+            <!-- date-range-picker -->
+            <script src="plugins/daterangepicker/daterangepicker.js"></script>
+            <!-- Tempusdominus Bootstrap 4 -->
+            <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+            <!-- Bootstrap Switch -->
+            <script src="plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+            <!-- BS-Stepper -->
+            <script src="plugins/bs-stepper/js/bs-stepper.min.js"></script>
+            <!-- dropzonejs -->
+            <script src="plugins/dropzone/min/dropzone.min.js"></script>
+            <!-- SweetAlert2 -->
+            <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+            <!-- Toastr -->
+            <script src="plugins/toastr/toastr.min.js"></script>
+            <!-- AdminLTE App -->
+            <script src="dist/js/adminlte.min.js"></script>
+
+            <!-- Summernote -->
+            <script src="plugins/summernote/summernote-bs4.min.js"></script>
+            <!-- CodeMirror -->
+            <script src="plugins/codemirror/codemirror.js"></script>
+            <script src="plugins/codemirror/mode/css/css.js"></script>
+            <script src="plugins/codemirror/mode/xml/xml.js"></script>
+            <script src="plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+            <!-- AdminLTE for demo purposes -->
+            <script src="dist/js/demo.js"></script>
+            <script>
+                function Suucess(msg) {
+                    var Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    toastr.success(msg)
+                }
+                function error(msg) {
+                    var Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    toastr.error(msg)
+                }
+                function warning(msg) {
+                    var Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    toastr.warning(msg)
+                }
+                function info(msg) {
+                    var Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    toastr.info(msg)
+                }
+            </script>
+
+            <script>
+                $(function () {
+                    bsCustomFileInput.init();
+                });
+            </script>
+            <div class="content-wrapper">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+        </div>
+    </form>
+
+    <!-- jQuery -->
+
+</body>
+</html>
